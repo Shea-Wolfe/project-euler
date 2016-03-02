@@ -88,4 +88,24 @@ def is_palindrome(sentence):
         else:
             return False
 
-problem4()
+def problem5():
+    '''2520 is the smallest number that can be divided by each
+    of the numbers from 1 to 10 without any remainder.
+    What is the smallest positive number that is evenly divisible
+    by all of the numbers from 1 to 20?'''
+    starting_number = 2520
+    while divisible_check(starting_number) is False:
+        starting_number += 20
+    print(starting_number)
+
+
+def divisible_check(number):
+    'Helper function for problem 5.  Checks divisiblity for 1-20. if yes returns True'
+    for divisor in range(1,21):
+        if number % divisor != 0:
+            return False
+        else:
+            pass
+    return True
+
+problem5()
