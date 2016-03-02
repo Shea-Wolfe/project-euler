@@ -119,3 +119,18 @@ def problem6():
     one hundred natural numbers and the square of the sum.'''
     num_list = [x for x in range(1, 101)]
     print(abs(sum([x**2 for x in num_list]) - sum(num_list)**2))
+
+def problem7():
+    '''By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13,
+    we can see that the 6th prime is 13.
+    What is the 10 001st prime number?'''
+    primes_list = [2,3,5,7,11,13]
+    current_number = 15
+    while len(primes_list) < 10001:
+        if new_prime(current_number, primes_list):
+            primes_list.append(current_number)
+        if str(current_number)[-1] == '3':
+            current_number += 4
+        else:
+            current_number += 2
+    print(primes_list[-1])
