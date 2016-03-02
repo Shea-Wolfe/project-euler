@@ -11,7 +11,6 @@ def problem1():
         else:
             pass
     print(final_sum)
-problem1()
 
 
 def problem2():
@@ -31,4 +30,29 @@ def problem2():
         else:
             pass
     print(final_sum)
-problem2()
+
+
+def problem3():
+    '''The prime factors of 13195 are 5, 7, 13 and 29.
+    What is the largest prime factor of the number 600851475143 ?'''
+    primes_list = [2,3,5,7,11,13]
+    current_number = 15
+    while len(primes_list) < 10000:
+        if new_prime(current_number, primes_list):
+            primes_list.append(current_number)
+        if str(current_number)[-1] == '3':
+            current_number += 4
+        else:
+            current_number += 2
+    for prime in primes_list:
+        if 600851475143 % prime == 0:
+            print(prime)
+
+
+def new_prime(number, primes_list):
+    for prime in primes_list:
+        if number % prime == 0:
+            return False
+        else:
+            pass
+    return True
