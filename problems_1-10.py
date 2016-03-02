@@ -1,3 +1,4 @@
+import math
 
 def problem1():
     '''If we list all the natural numbers below 10 that are multiples of 3 or 5,
@@ -177,3 +178,15 @@ def problem8():
         start += 1
         end += 1
     print(max_product)
+
+def problem9():
+    '''A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+    a2 + b2 = c2
+    For example, 32 + 42 = 9 + 16 = 25 = 52.
+    There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+    Find the product abc.'''
+    for a in range(0,300):
+        for b in range(0,400):
+            if a + b + math.sqrt(a**2 + b**2) == 1000:
+                print("The numbers are {},{},{}".format(a, b, 1000-a-b))
+                print("The product is {}".format(a*b*(1000-a-b)))
