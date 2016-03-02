@@ -50,9 +50,42 @@ def problem3():
 
 
 def new_prime(number, primes_list):
+    'Helper function for problem 3.  Finds primes.'
     for prime in primes_list:
         if number % prime == 0:
             return False
         else:
             pass
     return True
+
+def problem4():
+    '''A palindromic number reads the same both ways.
+    The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+    Find the largest palindrome made from the product of two 3-digit numbers.'''
+    first_num = [x for x in range(1, 1000)]
+    second_num = [x for x in range(1, 1000)]
+    highest_palindrome = 9
+    for x1 in first_num:
+        for x2 in second_num:
+            number = x1 * x2
+            if is_palindrome(str(number)):
+                if number > highest_palindrome:
+                    highest_palindrome = number
+                else:
+                    pass
+            else:
+                pass
+    print(highest_palindrome)
+
+def is_palindrome(sentence):
+    ''' Uses recursive methods to check for palindromes
+        Helper function for problem4'''
+    if len(sentence) <=1:
+        return True
+    else:
+        if sentence[0] == sentence[-1]:
+            return is_palindrome(sentence[1:-1])
+        else:
+            return False
+
+problem4()
