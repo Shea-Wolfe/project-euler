@@ -190,3 +190,18 @@ def problem9():
             if a + b + math.sqrt(a**2 + b**2) == 1000:
                 print("The numbers are {},{},{}".format(a, b, 1000-a-b))
                 print("The product is {}".format(a*b*(1000-a-b)))
+
+def problem10():
+    '''The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+    Find the sum of all the primes below two million.'''
+    #A little slow but it gets there!
+    primes_list = [2,3,5,7,11,13]
+    current_number = 15
+    while primes_list[-1] < 2000000:
+        if new_prime(current_number, primes_list):
+            primes_list.append(current_number)
+        if str(current_number)[-1] == '3':
+            current_number += 4
+        else:
+            current_number += 2
+    print(sum(primes_list[:-1]))
