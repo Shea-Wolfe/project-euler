@@ -1,4 +1,5 @@
 import re
+import numpy as np
 
 def problem11():
     number_string = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -24,11 +25,21 @@ def problem11():
     number_string = re.sub(' ', ',', number_string)
     number_string = re.sub('\n,,,,', ',', number_string)
     number_list = number_string.split(',')
-    left = [[x, x+1, x+2, x+3] for x in range(397)]
-    right = [[x, x-1, x-2, x-3] for x in range(3,400)]
-    up = [[x, x+20, x+40, x+60] for x in range(370)]
-    down = [[x, x-20, x-40, x-60] for x in range(30, 400)]
-    cornerwise = [[x, x+21, x+42, x+63] for x in range(337)]
-    
-    # print(number_list)
+    # left = [[x, x+1, x+2, x+3] for x in range(397)]
+    # right = [[x, x-1, x-2, x-3] for x in range(3,400)]
+    # up = [[x, x+20, x+40, x+60] for x in range(370)]
+    # down = [[x, x-20, x-40, x-60] for x in range(30, 400)]
+    # cornerwise = [[x, x+21, x+42, x+63] for x in range(337)]
+    number_matrix = np.array(number_list, dtype=int)
+    number_matrix = number_matrix.reshape(20,20)
+    right = [number_matrix[x,y]*number_matrix[x+1,y]*number_matrix[x+2,y]*number_matrix[x+3,y] for x in range(17) for y in range(20)]
+    left = [number_matrix[x,y]*number_matrix[x-1,y]*number_matrix[x-2,y]*number_matrix[x-3,y] for x in range(3,20) for y in range(20)]
+    up = [number_matrix[x,y]*number_matrix[x,y+1]*number_matrix[x,y+2]*number_matrix[x,y+3] for x in range(20) for y in range(17)]
+    down = [number_matrix[x,y]*number_matrix[x,y-1]*number_matrix[x,y-2]*number_matrix[x,y-3] for x in range(20) for y in range(3,20)]
+    down_right = [number_matrix[x,y]*number_matrix[x+1,y+1]*number_matrix[x+2,y+2]*number_matrix[x+3,y+3] for x in range(17) for y in range(17)]
+    down_left = [number_matrix[x,y]*number_matrix[x-1,y+1]*number_matrix[x-2,y+2]*number_matrix[x-3,y+3] for x in range(3,20) for y in range(17)]
+    up_right = [number_matrix[x,y]*number_matrix[x+1,y-1]*number_matrix[x+2,y-2]*number_matrix[x+3,y-3] for x in range(17) for y in range(3,20)]
+    up_left = [number_matrix[x,y]*number_matrix[x-1,y-1]*number_matrix[x-2,y-2]*number_matrix[x-3,y-3] for x in range(3,20) for y in range(3,20)]
+    print(max([max(right),max(left),max(up),max(down),max(down_right),max(down_left),max(up_right),max(up_left)]))
+
 problem11()
