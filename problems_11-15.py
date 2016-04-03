@@ -1,5 +1,6 @@
 import re
 import numpy as np
+from math import sqrt
 
 def problem11():
     number_string = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -62,10 +63,11 @@ What is the value of the first triangle number to have over five hundred divisor
 
     triangle_base = 33 #starting with 33 nat numbers because it's the first triangle number > 500
     divisors = []
-    while len(divisors) < 500:
+    while len(divisors) <= 250: #Since we're only looking at half (since they come in pairs) we're only looking for > 250
+        current_triangle = sum(range(triangle_base)) #Make the number
+        test_point = int(sqrt(current_triangle)) #Get the range we're testing for divisors
         divisors = []
-        current_triangle = sum(range(triangle_base))
-        for number in range(1,current_triangle):
+        for number in range(1,test_point):
             if current_triangle % number == 0:
                 divisors.append(number)
             else:
@@ -74,7 +76,7 @@ What is the value of the first triangle number to have over five hundred divisor
         print(current_triangle)
     print(triangle_base)
     print(current_triangle)
-
+problem12()
 
 def problem13():
     '''Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
@@ -285,7 +287,6 @@ def problem13():
     number_list = [int(number) for number in number_list]
     print(sum(number_list))
 
-
 def problem14():
     '''The following iterative sequence is defined for the set of positive integers:
 
@@ -315,3 +316,7 @@ def problem14():
             max_length = length
             max_num = starting_number
     print("The max length is {} numbers and the number is {}".format(max_length, max_num))
+
+def problem15():
+    '''Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
+    How many such routes are there through a 20×20 grid?'''
